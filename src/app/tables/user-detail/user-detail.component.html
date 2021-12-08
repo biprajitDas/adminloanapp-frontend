@@ -1,0 +1,149 @@
+<div class="" id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row row-stat">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="panel panel-default">
+              <app-alert [message]="returnMessage" *ngIf="returnMessage" (close)="onCloseMessage()"></app-alert>
+              <div class="panel-heading panel-heading-no-divider">Today's Tasks
+                <span class="panel-subtitle">Go through and complete the loan requests</span>
+              </div>
+              <div class="row" *ngIf="isLoading">
+                <div class="col-md-10 col-sm-10" style="text-align: center;">
+                  <app-load-spinner></app-load-spinner>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <tr>
+                    <th>Customer ID :</th>
+                    <td>{{user[0].customerId}}</td>
+                  </tr>
+                  <tr rowspan="2">
+                    <th>Full Name :</th>
+                    <td>{{user[0].firstname}} {{user[0].lastname}}</td>
+                  </tr>
+                  <tr>
+                    <th>Date Of Birth :</th>
+                    <td>{{user[0].dateofbirth}}</td>
+                  </tr>
+                  <tr>
+                    <th>Email :</th>
+                    <td>{{user[0].mail}}</td>
+                  </tr>
+                  <tr>
+                    <th>Address :</th>
+                    <td>
+                      <table class="table table-striped">
+                        <tr>
+                          <th>Colony : </th>
+                          <td>{{user[0].address}}</td>
+                        </tr>
+                        <tr>
+                          <th>City : </th>
+                          <td>{{user[0].city}}</td>
+                        </tr>
+                        <tr>
+                          <th>State : </th>
+                          <td>{{user[0].state}}</td>
+                        </tr>
+                        <tr>
+                          <th>Country : </th>
+                          <td>{{user[0].country}}</td>
+                        </tr>
+                        <tr>
+                          <th>Pincode : </th>
+                          <td>{{user[0].pincode}}</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>Documents :</th>
+                    <td>
+                      <table class="table table-striped">
+                        <tr>
+                          <th>Aadhar Number : </th>
+                          <td>{{user[0].aadharnumber}}</td>
+                        </tr>
+                        <tr>
+                          <th>PAN Number : </th>
+                          <td>{{user[0].pannumber}}</td>
+                        </tr>
+                        <tr>
+                          <th>Aadhar Card : </th>
+                          <td>{{user[0].aadharcard}}</td>
+                        </tr>
+                        <tr>
+                          <th>PAN Card : </th>
+                          <td>{{user[0].pancard}}</td>
+                        </tr>
+
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Loan Details :</th>
+                    <td>
+                      <table class="table table-striped">
+                        <tr>
+                          <th>Loan Type : </th>
+                          <td>{{user[0].loantype}}</td>
+                        </tr>
+                        <tr>
+                          <th>Loan Amount : </th>
+                          <td>{{user[0].loanamount}}</td>
+                        </tr>
+                        <tr>
+                          <th>Loan Term : </th>
+                          <td>{{user[0].loanterm}}</td>
+                        </tr>
+
+                      </table>
+                    </td>
+
+                  </tr>
+
+                  <tr>
+                    <th>Loan Status :</th>
+                    <td>{{user[0].status}}</td>
+                  </tr>
+                </table>
+                <!-- <form #f="ngForm">
+                  <div class="row">
+                    <div class="form-group">
+                      <label for="comment">Comment</label>
+                      <input type="text" name="comment" class="form-control" ngModel>
+                    </div>
+                  </div>
+                </form> -->
+                <form #f="ngForm">
+                  <div class="row">
+                    <div class="form-group col-sm-5">
+                      <label for="comment">Comment</label>
+                      <!-- <input type="text-area" name="demo" class="form-control" ngModel> -->
+                      <textarea name="comment" rows="5" cols="70" ngModel></textarea>
+                    </div>
+                  </div>
+                </form>
+                <br>
+                <div *ngIf="user && user[0].current_task_name=='Loan Review'">
+                  <button class="btn btn-success" (click)="onReviewSuccess(f)">Review Success</button>|
+                  <button class="btn btn-danger" (click)="onReviewReject(f)">Reject Loan</button>|
+                  <button class="btn btn-warning" (click)="onBack()">Back</button>
+                </div>
+                <div *ngIf="user && user[0].current_task_name=='Loan Approval'">
+                  <button class="btn btn-success" (click)="onApprovalSuccess(f)">Approve Loan</button>|
+                  <button class="btn btn-danger" (click)="onApprovalReject(f)">Reject Loan</button>|
+                  <button class="btn btn-warning" (click)="onBack()">Back</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

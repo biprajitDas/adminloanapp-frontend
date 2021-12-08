@@ -1,0 +1,29 @@
+<div class="row" *ngIf="!loginPass && !isLoading">
+	<div class="col-xs-12 col-md-4 offset-md-4">
+		<app-alert [message]="error" *ngIf="error" (close)="onCloseError()"></app-alert>
+		<form #f="ngForm" (ngSubmit)="onLoginFormSubmit(f)">
+			<br><br><br>
+			<div class="form-group">
+				<label for="userId">UserId</label>
+				<input type="text" name="userId" class="form-control" ngModel required>
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" name="password" class="form-control" ngModel>
+			</div>
+			<div>
+				<button class="btn btn-success" type="submit" [disabled]="!f.valid">Login</button>
+			</div>
+		</form>
+	</div>
+</div>
+<br>
+<!-- <app-load-spinner></app-load-spinner> -->
+<!-- <div class="row" *ngIf="loginFailed && !loginPass">
+	<div class="col-xs-8 ofset-xs-2 colo-md-4 offset-md-4 alert alert-danger">
+		<p>UserId Incorrect</p>
+	</div>
+</div> -->
+<div *ngIf="loginPass">
+<router-outlet></router-outlet>
+</div>

@@ -1,0 +1,112 @@
+<div class="" id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row row-stat">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <app-alert [message]="returnMessage" *ngIf="returnMessage" (close)="onCloseMessage()"></app-alert>
+          <div class="panel-heading panel-heading-divider">Loan Application Form<span class="panel-subtitle">These are
+              the basic form elements</span>
+            <div class="row" *ngIf="isLoading">
+              <div class="col-sm-10 alert alert-success" style="text-align: center;">
+                <app-load-spinner></app-load-spinner>
+              </div>
+            </div>
+
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+              <div class="row">
+                <div class="form-group col-sm-5">
+                  <label for="firstname">First Name</label>
+                  <input type="text" name="firstname" class="form-control" ngModel>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="lastname">Last Name</label>
+                  <input type="text" name="lastname" class="form-control" ngModel>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="dateofbirth">Date Of Birth*</label>
+                  <input type="date" name="dateofbirth" class="form-control" ngModel>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="address">Address</label>
+                  <input type="text" name="address" class="form-control" ngModel>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="city">City</label>
+                  <input type="text" name="city" class="form-control" ngModel>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="state">State</label>
+                  <input type="text" name="state" class="form-control" ngModel>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="country">Country</label>
+                  <input type="text" name="country" class="form-control" ngModel>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="pincode">Pincode</label>
+                  <input type="text" name="pincode" maxlength="8" class="form-control" ngModel>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="pannumber">PAN Number</label>
+                  <input type="text" name="pannumber" class="form-control" ngModel>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="aadharnumber">Aadhar Number</label>
+                  <input type="text" name="aadharnumber" class="form-control" ngModel>
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="uploadaadharcard">Upload Aadhar Card</label>
+                  <input type="file" name="uploadaadharcard" class="form-control" ngModel disabled>
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="uploadpancard">Upload PAN Card</label>
+                  <input type="file" name="uploadpancard" class="form-control" ngModel disabled>
+                </div>
+                <div class="form-group col-sm-5">
+
+                  <label for="loantype">Select Loan Type</label>
+                  <select class="form-control" name="loantype" ngModel>
+                    <option>Home Loan</option>
+                    <option>Vehicle Loan</option>
+                    <option>Personal Loan</option>
+                    <option>Commercial Loan</option>
+                  </select>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="loanamount">Select Loan Amount</label>
+                  <select class="form-control" name="loanamount" ngModel>
+                    <option>10,00,000</option>
+                    <option>20,00,000</option>
+                    <option>40,00,000</option>
+                    <option>50,00,000</option>
+                  </select>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="loanterm">Select Loan Term</label>
+                  <select class="form-control" name="loanterm" ngModel>
+                    <option>3 Months</option>
+                    <option>6 Months</option>
+                    <option>9 Months</option>
+                    <option>12 Months</option>
+                  </select>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="mail">Mail Id*</label>
+                  <input type="mail" name="mail" class="form-control" ngModel>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column-xs-12">
+                  <button class="btn btn-success" type="submit" [disabled]="!f.valid">
+                    Submit</button>|
+                  <button class="btn btn-danger" type="button" (click)="onClear()">
+                    Clear</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
