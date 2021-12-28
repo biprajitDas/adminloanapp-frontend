@@ -5,6 +5,7 @@ import { User } from '../../shared/user.model';
 import { DataSourceService } from '../../shared/data-source.service';
 import { NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
@@ -20,6 +21,13 @@ export class UserDetailComponent implements OnInit {
   isNeedMoreDetails: boolean = false;
   isLoading: boolean = false;
   returnMessage!: string;
+
+  image_url = "http://localhost:8083/springboot-flowable-service/downloadFile/";
+  pannumber: string;
+  aadharnumber: string;
+  pan_url = "";
+  aad_url = "";
+
   constructor(private route: ActivatedRoute,
     private dataSourceService: DataSourceService,
     private router: Router) { }
@@ -29,6 +37,11 @@ export class UserDetailComponent implements OnInit {
       .subscribe((params: Params) => {
         this.id = +params['id'];
         this.user = this.dataSourceService.getUserByIndex(this.id);
+        this.pannumber = this.user[0].pannumber;
+        this.aadharnumber = this.user[0].aadharnumber;
+        this.pan_url = this.image_url + this.pannumber + '.jpg';
+        this.aad_url = this.image_url + this.aadharnumber + '.jpg';
+        console.log("pan_url", this.pan_url);
         console.log("fetched user by index : ", this.user);
       })
 

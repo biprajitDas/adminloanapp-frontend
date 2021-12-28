@@ -17,6 +17,7 @@ export class DataSourceService {
   user = new BehaviorSubject<LoginUser>(null as any);
 
   REST_API: string = 'http://localhost:8083/springboot-flowable-service/process/start';
+  file_API = "http://localhost:8083/springboot-flowable-service/uploadFile";
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json').
     set('processKey', 'loan_request_process');
   constructor(private httpClient: HttpClient) { }
@@ -107,5 +108,20 @@ export class DataSourceService {
     console.log("fetching flow diagram....");
     return this.httpClient.get<any>('http://localhost:8083/springboot-flowable-service/process/runtime/process-instances/' + processInstanceId + '/diagram',
       { responseType: 'blob' as 'json' });
+  }
+  async uploadFile(formData: FormData, uploaded_file_name: string) {
+    const file_headers = new HttpHeaders().set('filename', uploaded_file_name);
+
+    await this.httpClient.post(this.file_API, formData, { headers: file_headers }).subscribe(res => {
+      console.log(res);
+    });
+
+  }
+  getLoanReviewsByAssignee() {
+    return this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/loanreviews/' + this.userId);
+  }
+  getLoanApprovalsByAssignee() {
+
+    return this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/loanapprovals/' + this.userId);
   }
 }

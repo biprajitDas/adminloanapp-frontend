@@ -74,11 +74,11 @@
                         </tr>
                         <tr>
                           <th>Aadhar Card : </th>
-                          <td>{{user[0].aadharcard}}</td>
+                          <td><img src="{{aad_url}}" alt="AadharPhoto" class="img-responsive"></td>
                         </tr>
                         <tr>
                           <th>PAN Card : </th>
-                          <td>{{user[0].pancard}}</td>
+                          <td><img src="{{pan_url}}" alt="PANPhoto"></td>
                         </tr>
 
                       </table>
@@ -99,6 +99,10 @@
                         <tr>
                           <th>Loan Term : </th>
                           <td>{{user[0].loanterm}}</td>
+                        </tr>
+                        <tr>
+                          <th>Loan Interest : </th>
+                          <td>{{user[0].loaninterest}}%</td>
                         </tr>
 
                       </table>

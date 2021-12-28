@@ -17,6 +17,7 @@ import { HeaderComponent } from "./shared/header/header.component";
 import { NavigationComponent } from "./shared/navigation/navigation.component";
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,7 @@ import { NavigationComponent } from "./shared/navigation/navigation.component";
     customFormsModule,
     HttpClientModule,
     BrowserModule,
-    RouterModule.forRoot(routes, { useHash: true })
+    RouterModule.forRoot(routes, { useHash: true }),
 
 
   ],
