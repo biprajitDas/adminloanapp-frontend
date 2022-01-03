@@ -25,10 +25,15 @@ export class DashboardComponent implements OnInit {
   loanApprovals: number = 0;
   loanReviewsToComplete: number = 0;
   loanApprovalsToComplete: number = 0;
+  lastMonthData: number[];
+  lastSixMonthsData: number[];
+  isFirstTime: boolean = true;
   pieChartData: number[];
   dropDownName: string = "Current Month";
   constructor(private dataSourceService: DataSourceService,
-    private httpClient: HttpClient) { }
+    private httpClient: HttpClient) {
+
+  }
 
   async ngOnInit() {
     await this.dataSourceService.fetchReviewUsers();
@@ -54,25 +59,30 @@ export class DashboardComponent implements OnInit {
           console.log(error);
         }
       );
-    const data: number[] = await this.dataSourceService.getPieData("currentmonth");
+    var data: number[] = await this.dataSourceService.getChartData("currentmonth");
     this.pieChartData = data;
+    console.log("this.lastMonthData : ", this.lastMonthData);
   }
 
 
 
 
   async getCurrentPieData() {
-    var x: number[] = await this.dataSourceService.getPieData("currentmonth");
+    var x: number[] = await this.dataSourceService.getChartData("currentmonth");
+    console.log("inside dash current data", x);
+    this.dropDownName = "Curent Month";
     this.pieChartData = x;
+
   }
   async getLastMonthPieData() {
     this.dropDownName = "Last Month";
-    var x: number[] = await this.dataSourceService.getPieData("lastmonth");
-    this.pieChartData = x;
+    this.lastMonthData = await this.dataSourceService.getChartData("lastmonth");
+    this.pieChartData = this.lastMonthData;
   }
   async getLastSixMonthsPieData() {
-    this.dropDownName = "Last 6 Months";
-    var x: number[] = await this.dataSourceService.getPieData("lastsixmonths");
-    this.pieChartData = x;
+
+    this.dropDownName = "Last Six Months";
+    this.lastSixMonthsData = await this.dataSourceService.getChartData("lastsixmonths");
+    this.pieChartData = this.lastSixMonthsData;
   }
 }

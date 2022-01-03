@@ -134,13 +134,12 @@ export class DataSourceService {
     return await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/loanapprovals/' + this.userId).toPromise();
   }
 
-  async getPieData(period: string) {
-    var x = await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId + '/reviewed').toPromise();
-    var y = await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId + '/rejected').toPromise();
-    var z = await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId + '/approved').toPromise();
-    console.log("x+y+z:", x, y, z);
-    return [x, y, z];
-
-
+  async getChartData(period: string) {
+    var x = await this.httpClient.get<number[]>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId).toPromise();
+    // var y = await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId + '/rejected').toPromise();
+    // var z = await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId + '/approved').toPromise();
+    console.log("x+y+z:", x);
+    return x;
   }
+
 }

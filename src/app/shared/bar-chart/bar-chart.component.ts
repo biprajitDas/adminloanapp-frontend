@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { DataSourceService } from "../data-source.service";
 
 
 @Component({
@@ -7,29 +8,53 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./bar-chart.component.scss"]
 })
 export class BarChartComponent implements OnInit {
-  constructor() { }
-  public barChartOptions: any = {
-    scaleShowVerticalLines: false,
-    responsive: true,
-    maintainAspectRatio: false
-  };
-  public barChartLabels: string[] = [
+  constructor(private dataSourceService: DataSourceService) { }
+  monthNames: string[] = [
     "Jan",
     "Feb",
     "Mar",
     "Apr",
     "May",
     "June",
-    "Apr"
+    "July",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
   ];
+  lastSixMonths: string[];
+  barChartData1: number[];
+  async ngOnInit() {
+    var currentMonth = new Date().getMonth();
+    this.lastSixMonths = await this.monthNames.slice(currentMonth - 5).concat(this.monthNames.slice(0, currentMonth));
+    this.lastSixMonths.push(this.monthNames[currentMonth]);
+    this.barChartLabels = await this.lastSixMonths;
+    console.log("currentMonth: ", currentMonth);
+    console.log("6Month: ", this.lastSixMonths);
+    this.barChartData1 = await this.dataSourceService.getChartData("eachmonthdata");
+    console.log("bar data :", this.barChartData1);
+    this.barChartData = [
+      {
+        data: [this.barChartData1[15], this.barChartData1[12], this.barChartData1[9], this.barChartData1[6], this.barChartData1[3], this.barChartData1[0]],
+        label: "Reviewed"
+      },
+      { data: [this.barChartData1[16], this.barChartData1[13], this.barChartData1[10], this.barChartData1[7], this.barChartData1[4], this.barChartData1[1]], label: "Rejected" },
+      { data: [this.barChartData1[17], this.barChartData1[14], this.barChartData1[11], this.barChartData1[8], this.barChartData1[5], this.barChartData1[2]], label: "Approved" }
+    ];
+  }
+  public barChartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    maintainAspectRatio: false
+
+  };
+  public barChartLabels: string[];
+
   public barChartType: string = "bar";
   public barChartLegend: boolean = true;
 
-  public barChartData: any[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: "Reviewed" },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: "Rejected" },
-    { data: [23, 46, 35, 14, 81, 22, 85], label: "Approved" }
-  ];
+  public barChartData: any[];
   public chartColors: any[] = [
     { // first color
       backgroundColor: 'rgba(255, 140, 26)',
@@ -66,5 +91,5 @@ export class BarChartComponent implements OnInit {
     //console.log(e);
   }
 
-  ngOnInit() { }
+
 }

@@ -46,9 +46,6 @@ export class AppComponent {
 
         if (user)
           this.dataSourceService.setUserId(user.userId);
-
-        console.log(!user);
-        console.log(!!user);
         console.log("loginpass:", this.loginPass);
         if (this.loginPass) {
           this.dataSourceService.fetchReviewUsers();
@@ -74,12 +71,9 @@ export class AppComponent {
     this.titleService.setTitle(newTitle);
   }
   async onLoginFormSubmit(f: NgForm) {
-    //this.loginFailed=false;
     console.log(f.value);
-
     if (f.value.userId == "1234" || f.value.userId == "admin") {
       this.dataSourceService.login(f.value.userId, f.value.password);
-      //this.router.navigate(['/']);
       this.dataSourceService.fetchReviewUsers();
       f.reset();
     }
@@ -88,12 +82,8 @@ export class AppComponent {
       this.error = "Incorrect Credentials";
       f.reset();
     }
-
-    console.log("3.....:", this.loginPass);
-    //this.router.navigate(['/']);
   }
   onCloseError() {
-    console.log("on oncloseError");
     this.error = null;
   }
   ngOnDestroy() {
