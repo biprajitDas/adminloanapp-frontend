@@ -1,0 +1,7 @@
+<div>
+    <div style="display: block; height: 300px;" *ngIf="chartData">
+        <canvas baseChart [data]="chartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" [colors]="pieChartColors"
+            [options]="pieChartOptions"></canvas>
+    </div>
+</div>

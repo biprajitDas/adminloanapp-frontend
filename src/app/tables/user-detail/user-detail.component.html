@@ -18,19 +18,19 @@
                 <table class="table table-striped">
                   <tr>
                     <th>Customer ID :</th>
-                    <td>{{user[0].customerId}}</td>
+                    <td>{{user.customerId}}</td>
                   </tr>
                   <tr rowspan="2">
                     <th>Full Name :</th>
-                    <td>{{user[0].firstname}} {{user[0].lastname}}</td>
+                    <td>{{user.firstname}} {{user.lastname}}</td>
                   </tr>
                   <tr>
                     <th>Date Of Birth :</th>
-                    <td>{{user[0].dateofbirth}}</td>
+                    <td>{{user.dateofbirth}}</td>
                   </tr>
                   <tr>
                     <th>Email :</th>
-                    <td>{{user[0].mail}}</td>
+                    <td>{{user.mail}}</td>
                   </tr>
                   <tr>
                     <th>Address :</th>
@@ -38,23 +38,23 @@
                       <table class="table table-striped">
                         <tr>
                           <th>Colony : </th>
-                          <td>{{user[0].address}}</td>
+                          <td>{{user.address}}</td>
                         </tr>
                         <tr>
                           <th>City : </th>
-                          <td>{{user[0].city}}</td>
+                          <td>{{user.city}}</td>
                         </tr>
                         <tr>
                           <th>State : </th>
-                          <td>{{user[0].state}}</td>
+                          <td>{{user.state}}</td>
                         </tr>
                         <tr>
                           <th>Country : </th>
-                          <td>{{user[0].country}}</td>
+                          <td>{{user.country}}</td>
                         </tr>
                         <tr>
                           <th>Pincode : </th>
-                          <td>{{user[0].pincode}}</td>
+                          <td>{{user.pincode}}</td>
                         </tr>
                       </table>
                     </td>
@@ -66,11 +66,11 @@
                       <table class="table table-striped">
                         <tr>
                           <th>Aadhar Number : </th>
-                          <td>{{user[0].aadharnumber}}</td>
+                          <td>{{user.aadharnumber}}</td>
                         </tr>
                         <tr>
                           <th>PAN Number : </th>
-                          <td>{{user[0].pannumber}}</td>
+                          <td>{{user.pannumber}}</td>
                         </tr>
                         <tr>
                           <th>Aadhar Card : </th>
@@ -90,19 +90,19 @@
                       <table class="table table-striped">
                         <tr>
                           <th>Loan Type : </th>
-                          <td>{{user[0].loantype}}</td>
+                          <td>{{user.loantype}}</td>
                         </tr>
                         <tr>
                           <th>Loan Amount : </th>
-                          <td>{{user[0].loanamount}}</td>
+                          <td>{{user.loanamount}}</td>
                         </tr>
                         <tr>
                           <th>Loan Term : </th>
-                          <td>{{user[0].loanterm}}</td>
+                          <td>{{user.loanterm}}</td>
                         </tr>
                         <tr>
                           <th>Loan Interest : </th>
-                          <td>{{user[0].loaninterest}}%</td>
+                          <td>{{user.loaninterest}}%</td>
                         </tr>
 
                       </table>
@@ -112,7 +112,7 @@
 
                   <tr>
                     <th>Loan Status :</th>
-                    <td>{{user[0].status}}</td>
+                    <td>{{user.status}}</td>
                   </tr>
                 </table>
                 <!-- <form #f="ngForm">
@@ -133,12 +133,12 @@
                   </div>
                 </form>
                 <br>
-                <div *ngIf="user && user[0].current_task_name=='Loan Review'">
+                <div *ngIf="user && user.current_task_name=='Loan Review'">
                   <button class="btn btn-success" (click)="onReviewSuccess(f)">Review Success</button>|
                   <button class="btn btn-danger" (click)="onReviewReject(f)">Reject Loan</button>|
                   <button class="btn btn-warning" (click)="onBack()">Back</button>
                 </div>
-                <div *ngIf="user && user[0].current_task_name=='Loan Approval'">
+                <div *ngIf="user && user.current_task_name=='Loan Approval'">
                   <button class="btn btn-success" (click)="onApprovalSuccess(f)">Approve Loan</button>|
                   <button class="btn btn-danger" (click)="onApprovalReject(f)">Reject Loan</button>|
                   <button class="btn btn-warning" (click)="onBack()">Back</button>

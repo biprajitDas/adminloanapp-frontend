@@ -15,6 +15,8 @@ import { BlankTemplateComponent } from "./template/blank-template.component";
 import { LeftNavTemplateComponent } from "./template/left-nav-template.component";
 import { HeaderComponent } from "./shared/header/header.component";
 import { NavigationComponent } from "./shared/navigation/navigation.component";
+import { ChartsModule } from "ng2-charts";
+
 
 
 
@@ -25,7 +27,10 @@ import { NavigationComponent } from "./shared/navigation/navigation.component";
     PageNotFoundComponent,
     HeaderComponent,
     LeftNavTemplateComponent,
-    NavigationComponent
+    NavigationComponent,
+
+
+
   ],
   imports: [
     FormsModule,
@@ -37,6 +42,7 @@ import { NavigationComponent } from "./shared/navigation/navigation.component";
     HttpClientModule,
     BrowserModule,
     RouterModule.forRoot(routes, { useHash: true }),
+    ChartsModule,
 
 
   ],

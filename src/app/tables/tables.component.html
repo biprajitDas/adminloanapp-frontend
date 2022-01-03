@@ -5,8 +5,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="panel panel-default">
-              <div class="panel-heading panel-heading-no-divider">Table Striped<span class="panel-subtitle">Table with
-                  alternative shades for order and even rows </span></div>
+              <div class="panel-heading panel-heading-no-divider">Total Tasks<span class="panel-subtitle"></span></div>
               <!--  <app-load-spinner></app-load-spinner> -->
               <!-- <div *ngIf="showDiagram">
             <h3>The Image is </h3>
@@ -42,18 +41,18 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let user of users | searchFilter:search; let i = index">
-                      <td>{{user[0].customerId}}</td>
-                      <td>{{user[0].firstname}} {{user[0].lastname}}</td>
-                      <td>{{user[0].status}}</td>
-                      <td>{{user[0].loantype}}</td>
+                      <td>{{user.customerId}}</td>
+                      <td>{{user.firstname}} {{user.lastname}}</td>
+                      <td>{{user.status}}</td>
+                      <td>{{user.loantype}}</td>
 
                       <td>
-                        {{user[0].loanamount}}
+                        {{user.loanamount}}
                       </td>
 
                       <td><button class="btn btn-success" [routerLink]="[i]">View</button></td>
                       <td><button class="btn btn-primary"
-                          (click)="onShowDiagram(user[0].processInstanceId)">Diagram</button></td>
+                          (click)="onShowDiagram(user.processInstanceId)">Diagram</button></td>
                     </tr>
                   </tbody>
                 </table>

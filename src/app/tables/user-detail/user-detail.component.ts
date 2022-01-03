@@ -23,8 +23,8 @@ export class UserDetailComponent implements OnInit {
   returnMessage!: string;
 
   image_url = "http://localhost:8083/springboot-flowable-service/downloadFile/";
-  pannumber: string;
-  aadharnumber: string;
+  pannumber: String;
+  aadharnumber: String;
   pan_url = "";
   aad_url = "";
 
@@ -37,8 +37,9 @@ export class UserDetailComponent implements OnInit {
       .subscribe((params: Params) => {
         this.id = +params['id'];
         this.user = this.dataSourceService.getUserByIndex(this.id);
-        this.pannumber = this.user[0].pannumber;
-        this.aadharnumber = this.user[0].aadharnumber;
+        console.log("this.user", this.user);
+        this.pannumber = this.user.pannumber;
+        this.aadharnumber = this.user.aadharnumber;
         this.pan_url = this.image_url + this.pannumber + '.jpg';
         this.aad_url = this.image_url + this.aadharnumber + '.jpg';
         console.log("pan_url", this.pan_url);
@@ -56,7 +57,7 @@ export class UserDetailComponent implements OnInit {
     };
     const body = JSON.stringify(data);
     this.isLoading = true;
-    await this.dataSourceService.loanReview(this.user[0].current_task_id, body);
+    await this.dataSourceService.loanReview(this.user.current_task_id, body);
     this.isLoading = false;
     this.returnMessage = "Application Reviewed Successfully!!";
     this.dataSourceService.removeUserByIndex(this.id);
@@ -76,7 +77,7 @@ export class UserDetailComponent implements OnInit {
     };
     const body = JSON.stringify(data);
     this.isLoading = true;
-    await this.dataSourceService.loanReview(this.user[0].current_task_id, body);
+    await this.dataSourceService.loanReview(this.user.current_task_id, body);
     this.isLoading = false;
     this.returnMessage = "Application Rejected.";
 
@@ -95,7 +96,7 @@ export class UserDetailComponent implements OnInit {
     const body = JSON.stringify(data);
     this.isLoading = true;
 
-    await this.dataSourceService.loanReview(this.user[0].current_task_id, body);
+    await this.dataSourceService.loanReview(this.user.current_task_id, body);
     this.isLoading = false;
     this.returnMessage = "Application Approved Successfully!!";
     this.dataSourceService.removeUserByIndex(this.id);
@@ -113,7 +114,7 @@ export class UserDetailComponent implements OnInit {
     };
     const body = JSON.stringify(data);
     this.isLoading = true;
-    await this.dataSourceService.loanReview(this.user[0].current_task_id, body);
+    await this.dataSourceService.loanReview(this.user.current_task_id, body);
     this.isLoading = false;
     this.returnMessage = "Application Rejected.";
     this.dataSourceService.removeUserByIndex(this.id);

@@ -20,6 +20,6 @@ import { BrowserModule } from '@angular/platform-browser';
   ],
   declarations: [FormsComponent],
   providers: [],
-  exports: [FormsModule, ReactiveFormsModule]
+  exports: [FormsModule, ReactiveFormsModule, CommonModule]
 })
 export class customFormsModule { }

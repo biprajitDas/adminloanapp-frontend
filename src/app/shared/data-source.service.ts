@@ -15,12 +15,20 @@ export class DataSourceService {
   userData: User[] = [];
   usersDataChanged = new Subject<User[]>();
   user = new BehaviorSubject<LoginUser>(null as any);
+  loanrRviews: number;
+  loansReviewed: number;
+  loansApproved: number;
+  loansRejected: number;
 
   REST_API: string = 'http://localhost:8083/springboot-flowable-service/process/start';
   file_API = "http://localhost:8083/springboot-flowable-service/uploadFile";
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json').
     set('processKey', 'loan_request_process');
+
+
   constructor(private httpClient: HttpClient) { }
+
+
   async addUser(data: User) {
     let API_URL = this.REST_API;
     const user = JSON.stringify(data);
@@ -117,11 +125,22 @@ export class DataSourceService {
     });
 
   }
-  getLoanReviewsByAssignee() {
-    return this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/loanreviews/' + this.userId);
-  }
-  getLoanApprovalsByAssignee() {
 
-    return this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/loanapprovals/' + this.userId);
+  async getLoanReviewsByAssignee() {
+
+    return await this.httpClient.get<any>('http://localhost:8083/springboot-flowable-service/loanreviews/' + this.userId).toPromise();
+  }
+  async getLoanApprovalsByAssignee() {
+    return await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/loanapprovals/' + this.userId).toPromise();
+  }
+
+  async getPieData(period: string) {
+    var x = await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId + '/reviewed').toPromise();
+    var y = await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId + '/rejected').toPromise();
+    var z = await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId + '/approved').toPromise();
+    console.log("x+y+z:", x, y, z);
+    return [x, y, z];
+
+
   }
 }
