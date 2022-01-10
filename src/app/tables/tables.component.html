@@ -19,7 +19,6 @@
                 <button class="btn btn-primary" (click)="fetchNewUsers()">Update List</button>
                 <!-- <app-process-diagram></app-process-diagram> -->
               </div>
-
               <div class="form-group pull-right">
                 <label for="search">Enter String to Filter:</label>&nbsp;
                 <input type="text" placeholder="Enter String to Filter..." class="form-control" [value]="search"
@@ -40,7 +39,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let user of users | searchFilter:search; let i = index">
+                    <tr *ngFor="let user of users | searchFilter:search | 
+                    paginate:{itemsPerPage:2,currentPage:page,totalItems:totalItems}; let i = index">
                       <td>{{user.customerId}}</td>
                       <td>{{user.firstname}} {{user.lastname}}</td>
                       <td>{{user.status}}</td>
@@ -56,7 +56,9 @@
                     </tr>
                   </tbody>
                 </table>
+                <pagination-controls class="text-center" (pageChange)="page=$event"></pagination-controls>
               </div>
+
             </div>
           </div>
         </div>

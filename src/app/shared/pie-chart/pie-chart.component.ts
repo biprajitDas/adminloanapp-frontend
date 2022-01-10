@@ -58,7 +58,7 @@ export class PieChartComponent implements OnInit {
   public pieChartType: any = 'pie';
   public pieChartColors: any[] = [
     {
-      backgroundColor: ['rgba(255, 140, 26)', 'rgba( 255, 26, 26)', 'rgba(71, 209, 71)'],
+      backgroundColor: ['rgb(236, 107, 86)', 'rgb(255, 193, 84)', 'rgb(71, 179, 156)'],
 
     }
 
@@ -70,11 +70,11 @@ export class PieChartComponent implements OnInit {
 
   // events
   public chartClicked(e: any): void {
-    //console.log(e);
+    console.log(e);
   }
 
   public chartHovered(e: any): void {
-    //console.log(e);
+    console.log(e);
   }
 
 }

@@ -57,12 +57,12 @@ export class BarChartComponent implements OnInit {
   public barChartData: any[];
   public chartColors: any[] = [
     { // first color
-      backgroundColor: 'rgba(255, 140, 26)',
-      borderColor: 'rgba(225,10,24,0.2)',
-      pointBackgroundColor: 'rgba(225,10,24,0.2)',
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
     { // second color 26, 117, 255
       backgroundColor: 'rgba( 255, 26, 26)',

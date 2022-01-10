@@ -10,13 +10,16 @@ import { AlertModule } from '../shared/alert/alert.module';
 import { ProcessDiagramComponent } from './process-diagram/process-diagram.component';
 import { FormsModule } from '@angular/forms';
 import { customFormsModule } from 'app/forms/forms.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   imports: [
     TablesRoutingModule,
     LoadSpinnerModule,
     AlertModule,
     CommonModule,
-    customFormsModule
+    customFormsModule,
+    NgxPaginationModule
   ],
   declarations: [TablesComponent, UserDetailComponent, SearchFilterPipe, ProcessDiagramComponent]
 })
