@@ -20,6 +20,7 @@ export class User {
 	public status!: String;
 	public current_task_id: String;
 	public current_task_name: String;
+	public started_date: Date;
 
 	constructor(firstname: String,
 		lastname: String,
@@ -36,7 +37,7 @@ export class User {
 		loantype: String,
 		loanamount: String,
 		loanterm: String,
-		mail: String, current_task_id: String, current_task_name: String) {
+		mail: String, current_task_id: String, current_task_name: String,  started_date: Date) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.dateofbirth = dateofbirth;
@@ -55,6 +56,6 @@ export class User {
 		this.mail = mail;
 		this.current_task_id = current_task_id;
 		this.current_task_name = current_task_name;
-
+		this.started_date= started_date;
 	}
 }

@@ -34,6 +34,7 @@
                       <th>Loan Status</th>
                       <th>Loan Type</th>
                       <th>Loan Amount</th>
+                      <th>Applied on</th>
                       <th>Action</th>
                       <th>FLow Diagram</th>
                     </tr>
@@ -49,7 +50,7 @@
                       <td>
                         {{user.loanamount}}
                       </td>
-
+                      <td>{{user.started_date | date:'fullDate'}}</td>
                       <td><button class="btn btn-success" [routerLink]="[i]">View</button></td>
                       <td><button class="btn btn-primary"
                           (click)="onShowDiagram(user.processInstanceId)">Diagram</button></td>
