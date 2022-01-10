@@ -15,10 +15,27 @@
           </div> -->
               <app-process-diagram [imgUrl]="imageUrl" *ngIf="imageUrl" (closeDiagram)="handleCloseDiagram()">
               </app-process-diagram>
-              <div class="pull-left">
+
+              <!-- <div class="pull-left">
                 <button class="btn btn-primary" (click)="fetchNewUsers()">Update List</button>
-                <!-- <app-process-diagram></app-process-diagram> -->
-              </div>
+                
+              </div> -->
+
+              <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                <div class="form-group col-sm-2">
+
+                    
+                      <label for="dateRange">Select Date Range</label>
+                      <input type="date" name="start" class="form-control" placeholder="start" ngModel>
+                      <input type="date" name="end" class="form-control" placeholder="end" ngModel>
+                 
+                </div> 
+                <div>
+                  <button class="btn btn-success" type="submit" [disabled]="!f.valid"> Search</button>||
+                  <button class="btn btn-warning" type="button" (click)="onReset()"> Reset</button>
+                </div>
+              </form>
+
               <div class="form-group pull-right">
                 <label for="search">Enter String to Filter:</label>&nbsp;
                 <input type="text" placeholder="Enter String to Filter..." class="form-control" [value]="search"
@@ -41,7 +58,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let user of users | searchFilter:search | 
-                    paginate:{itemsPerPage:2,currentPage:page,totalItems:totalItems}; let i = index">
+                    paginate:{itemsPerPage:5,currentPage:page,totalItems:totalItems}; let i = index">
                       <td>{{user.customerId}}</td>
                       <td>{{user.firstname}} {{user.lastname}}</td>
                       <td>{{user.status}}</td>
