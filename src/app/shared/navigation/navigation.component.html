@@ -27,6 +27,12 @@
             </a>
         </li>
         <li>
+            <a [routerLink]="['/tasks/completed']" [routerLinkActive]="['active']">
+                <i class="fa fa-tasks"></i>
+                <span>Completed Tasks</span>
+            </a>
+        </li>
+        <li>
             <a (click)="signOut()" style="cursor:pointer;">
                 <i class="fa fa-sign-out"></i>
                 <span class="hide-menu">LogOut</span>

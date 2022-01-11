@@ -19,6 +19,9 @@ export class DataSourceService {
   loansReviewed: number;
   loansApproved: number;
   loansRejected: number;
+  approvedCustomers: User[] = [];
+  rejectedCustomers: User[] = [];
+  reviewFailedCustomers: User[] = [];
 
   REST_API: string = 'http://localhost:8083/springboot-flowable-service/process/start';
   file_API = "http://localhost:8083/springboot-flowable-service/uploadFile";
@@ -136,10 +139,19 @@ export class DataSourceService {
 
   async getChartData(period: string) {
     var x = await this.httpClient.get<number[]>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId).toPromise();
-    // var y = await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId + '/rejected').toPromise();
-    // var z = await this.httpClient.get<number>('http://localhost:8083/springboot-flowable-service/' + period + '/' + this.userId + '/approved').toPromise();
     console.log("x+y+z:", x);
     return x;
   }
+
+  async getApprovedCustomers() {
+    return await this.httpClient.get<User[]>('http://localhost:8083/springboot-flowable-service/approved-loan/' + this.userId).toPromise();
+  }
+  async getReviewFailedCustomers() {
+    return await this.httpClient.get<User[]>('http://localhost:8083/springboot-flowable-service/review-failed-loan/' + this.userId).toPromise();
+  }
+  async getRejectedCustomers() {
+    return await this.httpClient.get<User[]>('http://localhost:8083/springboot-flowable-service/rejected-loan/' + this.userId).toPromise();
+  }
+
 
 }

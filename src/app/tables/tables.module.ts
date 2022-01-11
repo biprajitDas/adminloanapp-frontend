@@ -21,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     customFormsModule,
     NgxPaginationModule
   ],
-  declarations: [TablesComponent, UserDetailComponent, SearchFilterPipe, ProcessDiagramComponent]
+  declarations: [TablesComponent, UserDetailComponent, SearchFilterPipe, ProcessDiagramComponent],
+  exports: [SearchFilterPipe]
 })
 export class TablesModule { }

@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 export class TablesComponent implements OnInit {
 
   @ViewChild('f') form: NgForm;
-  
+
   users: User[] = [];
   userFiltered: User[] = [];
 
@@ -25,7 +25,7 @@ export class TablesComponent implements OnInit {
 
   page: number = 1;
   totalItems: number;
-  // public smallnumPages1 = 0;
+
 
   constructor(private dataSourceService: DataSourceService,
     private sanitizer: DomSanitizer) { }
@@ -48,7 +48,7 @@ export class TablesComponent implements OnInit {
 
   findUserByInde(i: number) {
     console.log(this.users[i]);
-    //return this.users[i];
+
   }
 
   async fetchNewUsers() {
@@ -57,47 +57,33 @@ export class TablesComponent implements OnInit {
   }
 
   onShowDiagram(processInstanceId: String) {
-    // await this.dataSourceService.getFlowDiagram(processInstanceId).subscribe(
-    //   data=>{
-    //     this.image=data;
-    //      let objectURL = 'data:image/png;base64,' + data;
-    //       console.log("objectURL :",objectURL);
-    //    this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    //      console.log("img",this.image);
-    //   });
-    //  //console.log(this.diagram);
+
     this.imageUrl = 'http://localhost:8083/springboot-flowable-service/process/runtime/process-instances/' + processInstanceId + '/diagram';
-    //   console.log("image url",this.imageUrl);
-    //   this.showDiagram=true;
 
   }
-  // onClose(){
-  //   this.showDiagram=false;
-  // }
+
   handleCloseDiagram() {
     this.imageUrl = null;
   }
 
-  onSubmit(form: NgForm){
-  console.log(form.value);
-  this.userFiltered = [];
-  this.users = this.dataSourceService.getUsers();
-  for(let i = 0; i < this.users.length; i++)
-  {
-    if(this.users[i].started_date >= form.value.start && this.users[i].started_date <= form.value.end)
-    {
-      this.userFiltered.push(this.users[i]);
+  onSubmit(form: NgForm) {
+    console.log(form.value);
+    this.userFiltered = [];
+    this.users = this.dataSourceService.getUsers();
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].started_date >= form.value.start && this.users[i].started_date <= form.value.end) {
+        this.userFiltered.push(this.users[i]);
+      }
     }
-  }
 
-  console.log(this.userFiltered);
-  this.users=this.userFiltered;
-  
-}
-onReset(){
-  this.form.reset();
-  this.userFiltered = [];
-  this.users = this.dataSourceService.getUsers();
-}
+    console.log(this.userFiltered);
+    this.users = this.userFiltered;
+
+  }
+  onReset() {
+    this.form.reset();
+    this.userFiltered = [];
+    this.users = this.dataSourceService.getUsers();
+  }
 
 }

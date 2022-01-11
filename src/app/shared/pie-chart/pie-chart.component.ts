@@ -21,34 +21,7 @@ export class PieChartComponent implements OnInit {
   }
 
   async ngOnInit() {
-    // this.chart.chart.config.data.datasets = this.chartData;
-    // this.chart.chart.update();
-    // console.log("chart data: ", this.chartData);
-    // await this.dataSourceService.getLoanReviewsByAssignee()
-    //   .then(
-    //     data => {
-    //       this.loanReviews = data;
-    //       console.log("data 1 :", data);
-    //       this.pieChartData.push(10);
-    //     }
-    //   ).catch(
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   );
-    // console.log("thifjndkjf", this.loanReviews);
 
-    // await this.dataSourceService.getLoanApprovalsByAssignee()
-    //   .then(
-    //     data => {
-    //       this.loanApprovals = data;
-    //       this.pieChartData.push(30);
-    //     }
-    //   ).catch(
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   );
 
   }
 

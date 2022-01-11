@@ -20,6 +20,7 @@ import { ChartsModule } from "ng2-charts";
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,8 +29,6 @@ import { ChartsModule } from "ng2-charts";
     HeaderComponent,
     LeftNavTemplateComponent,
     NavigationComponent,
-
-
 
   ],
   imports: [

@@ -65,6 +65,22 @@ export const routes: Routes = [{
   component: AppComponent
 },
 {
+  path: 'tasks/completed',
+  component: LeftNavTemplateComponent,
+  data: {
+    title: 'Admin Loan Application'
+  },
+  children: [
+    {
+      path: '',
+      loadChildren: () => import('./tasks-completed/tasks-completed.module').then(m => m.TasksCompletedModule),
+      data: {
+        title: 'Users List'
+      },
+    }
+  ]
+},
+{
   path: '**',
   component: PageNotFoundComponent
 }];
