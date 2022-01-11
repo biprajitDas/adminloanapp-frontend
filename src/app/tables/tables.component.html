@@ -58,7 +58,9 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let user of users | searchFilter:search | 
-                    paginate:{itemsPerPage:5,currentPage:page,totalItems:totalItems}; let i = index">
+
+                    paginate:{itemsPerPage:10,currentPage:page,totalItems:totalItems}; let i = index">
+
                       <td>{{user.customerId}}</td>
                       <td>{{user.firstname}} {{user.lastname}}</td>
                       <td>{{user.status}}</td>
