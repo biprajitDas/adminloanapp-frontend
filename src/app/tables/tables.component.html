@@ -15,10 +15,27 @@
           </div> -->
               <app-process-diagram [imgUrl]="imageUrl" *ngIf="imageUrl" (closeDiagram)="handleCloseDiagram()">
               </app-process-diagram>
-              <div class="pull-left">
+
+              <!-- <div class="pull-left">
                 <button class="btn btn-primary" (click)="fetchNewUsers()">Update List</button>
-                <!-- <app-process-diagram></app-process-diagram> -->
-              </div>
+                
+              </div> -->
+
+              <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                <div class="form-group col-sm-2">
+
+                    
+                      <label for="dateRange">Select Date Range</label>
+                      <input type="date" name="start" class="form-control" placeholder="start" ngModel>
+                      <input type="date" name="end" class="form-control" placeholder="end" ngModel>
+                 
+                </div> 
+                <div>
+                  <button class="btn btn-success" type="submit" [disabled]="!f.valid"> Search</button>||
+                  <button class="btn btn-warning" type="button" (click)="onReset()"> Reset</button>
+                </div>
+              </form>
+
               <div class="form-group pull-right">
                 <label for="search">Enter String to Filter:</label>&nbsp;
                 <input type="text" placeholder="Enter String to Filter..." class="form-control" [value]="search"
@@ -34,13 +51,16 @@
                       <th>Loan Status</th>
                       <th>Loan Type</th>
                       <th>Loan Amount</th>
+                      <th>Applied on</th>
                       <th>Action</th>
                       <th>FLow Diagram</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let user of users | searchFilter:search | 
+
                     paginate:{itemsPerPage:10,currentPage:page,totalItems:totalItems}; let i = index">
+
                       <td>{{user.customerId}}</td>
                       <td>{{user.firstname}} {{user.lastname}}</td>
                       <td>{{user.status}}</td>
@@ -49,7 +69,7 @@
                       <td>
                         {{user.loanamount}}
                       </td>
-
+                      <td>{{user.started_date | date:'fullDate'}}</td>
                       <td><button class="btn btn-success" [routerLink]="[i]">View</button></td>
                       <td><button class="btn btn-primary"
                           (click)="onShowDiagram(user.processInstanceId)">Diagram</button></td>
