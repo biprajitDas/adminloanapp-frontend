@@ -4,12 +4,13 @@
       <div class="col-sm-12">
         <div class="panel panel-default">
           <app-alert [message]="returnMessage" *ngIf="returnMessage" (close)="onCloseMessage()"></app-alert>
-          <div class="panel-heading panel-heading-divider">Loan Application Form<span class="panel-subtitle">These are
-              the basic form elements</span>
+          <div class="panel-heading panel-heading-divider">Loan Application Form<span class="panel-subtitle">Provide the
+              details correctly</span>
             <div class="row" *ngIf="isLoading">
-              <div class="col-sm-10 alert alert-success" style="text-align: center;">
-                <app-load-spinner></app-load-spinner>
-              </div>
+              <!-- <div class="col-sm-10 alert alert-success" style="text-align: center;">
+                <app-loading-spinner></app-loading-spinner>
+              </div> -->
+              <app-loading-spinner></app-loading-spinner>
             </div>
 
             <form #f="ngForm" (ngSubmit)="onSubmit(f)">

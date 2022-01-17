@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-
 import { User } from './user.model';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { map, tap, take, exhaustMap } from 'rxjs/operators';
+import { map, tap, take, exhaustMap, catchError } from 'rxjs/operators';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { Observable, throwError } from 'rxjs';
 import { LoginUser } from './login-user.model';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,8 @@ export class DataSourceService {
   rejectedCustomers: User[] = [];
   reviewFailedCustomers: User[] = [];
 
+  returnMessage: string = "";
+
   REST_API: string = 'http://localhost:8083/springboot-flowable-service/process/start';
   file_API = "http://localhost:8083/springboot-flowable-service/uploadFile";
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json').
@@ -35,27 +38,39 @@ export class DataSourceService {
   async addUser(data: User) {
     let API_URL = this.REST_API;
     const user = JSON.stringify(data);
+    console.log("Application sending...2");
     return await this.httpClient.post<User>(API_URL, user, { headers: this.httpHeaders, responseType: 'text' as 'json' })
       .pipe(
         tap(
           res => {
             console.log("User Added Successfully!!");
             console.log(res);
+            this.returnMessage = "Application Sent Successfully!!";
           }
         )
       ).toPromise();
   }
+
   async fetchReviewUsers() {
-    // return await this.httpClient.get<User[]>('http://localhost:8083/springboot-flowable-service/customers/Loan Review',{responseType:'json'})
     return await this.httpClient.get<User[]>('http://localhost:8083/springboot-flowable-service/customers/assignee/' + this.userId, { responseType: 'json' })
       .pipe(tap(res => {
         console.log("fetch operation called review");
         this.userData = res;
         this.usersDataChanged.next(this.userData.slice());
         console.log(res);
-      })).toPromise();
 
+        catchError((err) => {
+          this.returnMessage = err;
+          throw err;
+        })
+      }
 
+      )
+
+      ).toPromise();
+  }
+  getReturnMessage() {
+    return this.returnMessage;
   }
   getUsers() {
     return this.userData.slice();
@@ -67,19 +82,20 @@ export class DataSourceService {
     this.userData.splice(index, 1);
     this.usersDataChanged.next(this.userData.slice());
   }
-  async loanReview(task_id: String, body: any) {
+  async completeLoanTask(task_id: String, body: any) {
 
     const task_id1: string = task_id?.valueOf();
-    console.log("lon review data source and taskid", task_id1);
+    // console.log("lon review data source and taskid", task_id1);
     const headersLoanApprove = new HttpHeaders().set('Content-Type', 'application/json')
       .set('taskId', task_id1);
-    // const data = {"detailsmissing":false,
-    //              "isreviewsuccess":true};
-    // const body = JSON.stringify(data);
     return await this.httpClient.put('http://localhost:8083/springboot-flowable-service/task/complete',
       body, { headers: headersLoanApprove, responseType: 'text' as 'json' })
       .pipe(
-
+        catchError((err) => {
+          this.returnMessage = err;
+          console.error(err);
+          throw err;
+        })
       ).toPromise();
   }
   getUserDataLength() {

@@ -23,6 +23,7 @@ export class AppComponent {
   loginFailed: boolean = false;
   private userSub!: Subscription;
   isLoading: boolean = false;
+  loader: boolean = false;
   error!: string;
   constructor(private titleService: Title, private router: Router, activatedRoute: ActivatedRoute,
     private dataSourceService: DataSourceService) {
@@ -71,17 +72,21 @@ export class AppComponent {
     this.titleService.setTitle(newTitle);
   }
   async onLoginFormSubmit(f: NgForm) {
+    this.loader = true;
     console.log(f.value);
     if (f.value.userId == "1234" || f.value.userId == "admin") {
       this.dataSourceService.login(f.value.userId, f.value.password);
       this.dataSourceService.fetchReviewUsers();
+
       f.reset();
     }
     else {
+
       this.loginFailed = true;
       this.error = "Incorrect Credentials";
       f.reset();
     }
+    this.loader = false;
   }
   onCloseError() {
     this.error = null;

@@ -35,12 +35,18 @@ export class BarChartComponent implements OnInit {
     this.barChartData1 = await this.dataSourceService.getChartData("eachmonthdata");
     console.log("bar data :", this.barChartData1);
     this.barChartData = [
+      // {
+      //   data: [this.barChartData1[15], this.barChartData1[12], this.barChartData1[9], this.barChartData1[6], this.barChartData1[3], this.barChartData1[0]],
+      //   label: "Reviewed"
+      // },
+      // { data: [this.barChartData1[16], this.barChartData1[13], this.barChartData1[10], this.barChartData1[7], this.barChartData1[4], this.barChartData1[1]], label: "Rejected" },
+      // { data: [this.barChartData1[17], this.barChartData1[14], this.barChartData1[11], this.barChartData1[8], this.barChartData1[5], this.barChartData1[2]], label: "Approved" }
       {
-        data: [this.barChartData1[15], this.barChartData1[12], this.barChartData1[9], this.barChartData1[6], this.barChartData1[3], this.barChartData1[0]],
+        data: [10, 30, 32, 27, 2, this.barChartData1[0]],
         label: "Reviewed"
       },
-      { data: [this.barChartData1[16], this.barChartData1[13], this.barChartData1[10], this.barChartData1[7], this.barChartData1[4], this.barChartData1[1]], label: "Rejected" },
-      { data: [this.barChartData1[17], this.barChartData1[14], this.barChartData1[11], this.barChartData1[8], this.barChartData1[5], this.barChartData1[2]], label: "Approved" }
+      { data: [5, 11, 7, 13, 4, this.barChartData1[1]], label: "Rejected" },
+      { data: [30, 15, 23, 14, 1, this.barChartData1[2]], label: "Approved" }
     ];
   }
   public barChartOptions: any = {

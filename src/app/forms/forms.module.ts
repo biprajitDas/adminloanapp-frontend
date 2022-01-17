@@ -8,6 +8,7 @@ import { LoadSpinnerModule } from '../load-spinner/load-spinner.module';
 import { AlertModule } from '../shared/alert/alert.module';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { LoadingSpinnerModule } from 'app/shared/loading-spinner/loading-spinner.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { BrowserModule } from '@angular/platform-browser';
     FormsRoutingModule,
     LoadSpinnerModule,
     AlertModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoadingSpinnerModule,
   ],
   declarations: [FormsComponent],
   providers: [],

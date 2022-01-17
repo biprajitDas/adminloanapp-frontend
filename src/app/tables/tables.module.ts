@@ -11,6 +11,8 @@ import { ProcessDiagramComponent } from './process-diagram/process-diagram.compo
 import { FormsModule } from '@angular/forms';
 import { customFormsModule } from 'app/forms/forms.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { LoadingSpinnerModule } from 'app/shared/loading-spinner/loading-spinner.module';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AlertModule,
     CommonModule,
     customFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BsDropdownModule.forRoot(),
+    LoadingSpinnerModule,
   ],
   declarations: [TablesComponent, UserDetailComponent, SearchFilterPipe, ProcessDiagramComponent],
   exports: [SearchFilterPipe]

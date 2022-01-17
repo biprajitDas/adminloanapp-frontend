@@ -57,7 +57,11 @@ export class UserDetailComponent implements OnInit {
     };
     const body = JSON.stringify(data);
     this.isLoading = true;
-    await this.dataSourceService.loanReview(this.user.current_task_id, body);
+    try {
+      await this.dataSourceService.completeLoanTask(this.user.current_task_id, body);
+    } catch (err) {
+      alert("server down please try again later");
+    }
     this.isLoading = false;
     this.returnMessage = "Application Reviewed Successfully!!";
     this.dataSourceService.removeUserByIndex(this.id);
@@ -77,10 +81,9 @@ export class UserDetailComponent implements OnInit {
     };
     const body = JSON.stringify(data);
     this.isLoading = true;
-    await this.dataSourceService.loanReview(this.user.current_task_id, body);
+    await this.dataSourceService.completeLoanTask(this.user.current_task_id, body);
     this.isLoading = false;
     this.returnMessage = "Application Rejected.";
-
     this.dataSourceService.removeUserByIndex(this.id);
     setTimeout(() => {
       this.isReviewRejected = false;
@@ -96,7 +99,7 @@ export class UserDetailComponent implements OnInit {
     const body = JSON.stringify(data);
     this.isLoading = true;
 
-    await this.dataSourceService.loanReview(this.user.current_task_id, body);
+    await this.dataSourceService.completeLoanTask(this.user.current_task_id, body);
     this.isLoading = false;
     this.returnMessage = "Application Approved Successfully!!";
     this.dataSourceService.removeUserByIndex(this.id);
@@ -114,14 +117,14 @@ export class UserDetailComponent implements OnInit {
     };
     const body = JSON.stringify(data);
     this.isLoading = true;
-    await this.dataSourceService.loanReview(this.user.current_task_id, body);
+    await this.dataSourceService.completeLoanTask(this.user.current_task_id, body);
     this.isLoading = false;
     this.returnMessage = "Application Rejected.";
     this.dataSourceService.removeUserByIndex(this.id);
     setTimeout(() => {
       this.isRejected = false;
       this.router.navigate(['/tables']);
-    }, 3000);
+    }, 1000);
   }
   onBack() {
     this.router.navigate(['/tables']);

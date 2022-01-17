@@ -7,16 +7,22 @@
                         <div class="panel panel-default">
                             <div class="panel-heading panel-heading-no-divider">Completed Tasks<span
                                     class="panel-subtitle"></span></div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary" type="button" (click)="approved()">Approved</button>
+                                <button class="btn btn-primary" type="button" (click)="rejected()">Rejected</button>
+                                <button class="btn btn-primary" type="button" (click)="reviewFailed()">Review
+                                    Failed</button>
 
+                            </div>
                             <div class="form-group pull-right">
-                                <label for="search">Enter String to Filter:</label>&nbsp;
+
                                 <input type="text" placeholder="Enter String to Filter..." class="form-control"
                                     [value]="search" (input)="search=$event.target.value">
                             </div>
 
 
                             <div class="table-responsive table1">
-                                <h4 class="text-center">Approved Loan Requests</h4>
+                                <h4 class="text-center">{{tableName}}</h4>
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -30,9 +36,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let user of approvedCustomers | searchFilter:search | 
+                                        <tr *ngFor="let user of users | searchFilter:search | 
 
-                    paginate:{itemsPerPage:10,currentPage:page,totalItems:totalItems}; let i = index">
+                    paginate:{itemsPerPage:10,currentPage:page,totalItems:itemsLength}; let i = index;">
 
                                             <td>{{user.customerId}}</td>
                                             <td>{{user.firstname}} {{user.lastname}}</td>
@@ -44,6 +50,7 @@
                                             </td>
                                             <td>{{user.started_date | date:'fullDate'}}</td>
 
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -52,7 +59,7 @@
                             </div>
 
 
-                            <div class="table-responsive table2">
+                            <!-- <div class="table-responsive table2">
                                 <h4 class="text-center">Review Failed Loan Requests</h4>
                                 <table class="table table-striped">
                                     <thead>
@@ -69,7 +76,7 @@
                                     <tbody>
                                         <tr *ngFor="let user of reviewFailedCustomers | searchFilter:search | 
 
-                    paginate:{itemsPerPage:10,currentPage:page,totalItems:totalItems}; let i = index">
+                    paginate:{itemsPerPage:5,currentPage:page2,totalItems:5};">
 
                                             <td>{{user.customerId}}</td>
                                             <td>{{user.firstname}} {{user.lastname}}</td>
@@ -84,16 +91,16 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <pagination-controls class="text-center" (pageChange)="page=$event">
+                                <pagination-controls class="text-center" (pageChange)="page2=$event">
                                 </pagination-controls>
-                            </div>
+                            </div> -->
                             <!-- <div class="form-group pull-right">
                                 <label for="search">Enter String to Filter:</label>&nbsp;
                                 <input type="text" placeholder="Enter String to Filter..." class="form-control"
                                     [value]="search" (input)="search=$event.target.value">
                             </div> -->
 
-                            <div class="table-responsive table3">
+                            <!-- <div class="table-responsive table3">
                                 <h4 class="text-center">Rejected Loan Requests</h4>
                                 <table class="table table-striped">
                                     <thead>
@@ -110,7 +117,7 @@
                                     <tbody>
                                         <tr *ngFor="let user of  rejectedCustomers | searchFilter:search | 
 
-                    paginate:{itemsPerPage:10,currentPage:page,totalItems:totalItems}; let i = index">
+                    paginate:{itemsPerPage:5,currentPage:page3,totalItems:5};">
 
                                             <td>{{user.customerId}}</td>
                                             <td>{{user.firstname}} {{user.lastname}}</td>
@@ -120,16 +127,16 @@
                                             <td>
                                                 {{user.loanamount}}
                                             </td>
-                                            <td>{{user.started_date | date:'fullDate'}}</td>
-                                            <!-- <td><button class="btn btn-success" [routerLink]="[i]">View</button></td>
+                                            <td>{{user.started_date | date:'fullDate'}}</td> -->
+                            <!-- <td><button class="btn btn-success" [routerLink]="[i]">View</button></td>
                       <td><button class="btn btn-primary"
                           (click)="onShowDiagram(user.processInstanceId)">Diagram</button></td> -->
-                                        </tr>
+                            <!-- </tr>
                                     </tbody>
                                 </table>
-                                <pagination-controls class="text-center" (pageChange)="page=$event">
+                                <pagination-controls class="text-center" (pageChange)="page3=$event">
                                 </pagination-controls>
-                            </div>
+                            </div> -->
 
 
 

@@ -5,8 +5,8 @@ import { AlertComponent } from './alert.component';
   imports: [],
   declarations: [AlertComponent],
   exports: [
-      AlertComponent
-   
+    AlertComponent
+
   ]
 })
 export class AlertModule { }

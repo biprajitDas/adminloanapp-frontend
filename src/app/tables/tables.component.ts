@@ -4,6 +4,7 @@ import { User } from '../shared/user.model';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
+import { BsDropdownDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-tables',
@@ -13,7 +14,7 @@ import { NgForm } from '@angular/forms';
 export class TablesComponent implements OnInit {
 
   @ViewChild('f') form: NgForm;
-
+  @ViewChild('dropdown') dropDown: BsDropdownDirective;
   users: User[] = [];
   userFiltered: User[] = [];
 
@@ -26,6 +27,7 @@ export class TablesComponent implements OnInit {
   page: number = 1;
   totalItems: number;
 
+  dropDrownClose: boolean = false;
 
   constructor(private dataSourceService: DataSourceService,
     private sanitizer: DomSanitizer) { }
@@ -67,7 +69,10 @@ export class TablesComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+
     console.log(form.value);
+    this.dropDown.isOpen = !this.dropDown.isOpen;
+    console.log("dropdownmenu", this.dropDrownClose);
     this.userFiltered = [];
     this.users = this.dataSourceService.getUsers();
     for (let i = 0; i < this.users.length; i++) {
@@ -78,6 +83,7 @@ export class TablesComponent implements OnInit {
 
     console.log(this.userFiltered);
     this.users = this.userFiltered;
+    this.form.reset();
 
   }
   onReset() {

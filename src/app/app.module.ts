@@ -16,6 +16,11 @@ import { LeftNavTemplateComponent } from "./template/left-nav-template.component
 import { HeaderComponent } from "./shared/header/header.component";
 import { NavigationComponent } from "./shared/navigation/navigation.component";
 import { ChartsModule } from "ng2-charts";
+import { LoadingSpinnerModule } from "./shared/loading-spinner/loading-spinner.module";
+
+
+
+
 
 
 
@@ -30,6 +35,7 @@ import { ChartsModule } from "ng2-charts";
     LeftNavTemplateComponent,
     NavigationComponent,
 
+
   ],
   imports: [
     FormsModule,
@@ -42,6 +48,7 @@ import { ChartsModule } from "ng2-charts";
     BrowserModule,
     RouterModule.forRoot(routes, { useHash: true }),
     ChartsModule,
+    LoadingSpinnerModule,
 
 
   ],

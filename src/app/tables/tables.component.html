@@ -13,6 +13,7 @@
             <img [src]="imageUrl" class="image-responsive" />
           
           </div> -->
+
               <app-process-diagram [imgUrl]="imageUrl" *ngIf="imageUrl" (closeDiagram)="handleCloseDiagram()">
               </app-process-diagram>
 
@@ -21,27 +22,61 @@
                 
               </div> -->
 
-              <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-                <div class="form-group col-sm-2">
 
-                    
-                      <label for="dateRange">Select Date Range</label>
-                      <input type="date" name="start" class="form-control" placeholder="start" ngModel>
-                      <input type="date" name="end" class="form-control" placeholder="end" ngModel>
-                 
-                </div> 
-                <div>
-                  <button class="btn btn-success" type="submit" [disabled]="!f.valid"> Search</button>||
+              <!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form-inline col-lg-8 col-md-6 pull-left"
+                style="border: 1px solid red;">
+                <label for="dateRange">Select Date Range</label>
+                <div class="form-group">
+
+                  <input type="date" name="start" class="form-control" placeholder="start" ngModel>
+                </div>
+                <div class="form-group">
+
+                  <input type="date" name="end" class="form-control" placeholder="end" ngModel>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-success" type="submit" [disabled]="!f.valid"> Search</button>|
                   <button class="btn btn-warning" type="button" (click)="onReset()"> Reset</button>
                 </div>
-              </form>
+              </form> -->
 
-              <div class="form-group pull-right">
-                <label for="search">Enter String to Filter:</label>&nbsp;
+
+              <div class="form-group pull-right" style="border-radius: 8px; overflow: hidden;">
+                <!-- <label for=" search">Enter String to Filter:</label>&nbsp; -->
                 <input type="text" placeholder="Enter String to Filter..." class="form-control" [value]="search"
                   (input)="search=$event.target.value">
               </div>
 
+              <div class="pull-right" style="margin-right: 10px;border-radius: 10px;">
+                <div class="btn-group" dropdown [autoClose]="false" #dropdown="bs-dropdown">
+                  <button dropdownToggle type="button" class="btn btn-success dropdown-toggle">Select Date Range
+                  </button>
+                  <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <!-- <li role="menuitem"><a class="dropdown-item" href="#">Current
+                        Month</a>
+                    </li> -->
+                    <div role="menuitem">
+                      <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="dropdown-item">
+                        <label for="dateRange">Select Date Range</label>
+                        <div class="form-group">
+
+                          <input type="date" name="start" class="form-control" placeholder="start" ngModel>
+                        </div>
+                        <div class="form-group">
+
+                          <input type="date" name="end" class="form-control" placeholder="end" ngModel>
+                        </div>
+                        <div class="form-group">
+                          <button class="btn btn-success" type="submit" [disabled]="!f.valid"> Search</button>|
+                          <button class="btn btn-warning" type="button" (click)="onReset()"> Reset</button>
+                        </div>
+                      </form>
+
+                    </div>
+
+                  </ul>
+                </div>
+              </div>
               <div class="table-responsive">
                 <table class="table table-striped">
                   <thead>

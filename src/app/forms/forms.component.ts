@@ -45,9 +45,14 @@ export class FormsComponent implements OnInit {
   }
   async onSubmit(form: NgForm) {
     this.isLoading = true;
+    console.log("Application sending..1..");
+    try {
+      await await this.dataSourceService.addUser(form.value);
+    } catch (err) {
+      alert("server down pleae try again");
+    }
 
-    await this.dataSourceService.addUser(form.value);
-    //console.log(form.value.pannumber);
+    console.log("Application sending..3..");
     var formDataPAN: any = new FormData();
     formDataPAN.append("file", this.pan.get('img')!.value);
     await this.dataSourceService.uploadFile(formDataPAN, form.value.pannumber);
@@ -57,7 +62,7 @@ export class FormsComponent implements OnInit {
     await this.dataSourceService.uploadFile(formDataAAD, form.value.aadharnumber);
     this.isLoading = false;
     this.isSent = true;
-    this.returnMessage = "Application Sent Successfully";
+    this.returnMessage = this.dataSourceService.getReturnMessage();
     console.log("return Message", this.returnMessage);
     this.childForm.reset();
     setTimeout(() => {

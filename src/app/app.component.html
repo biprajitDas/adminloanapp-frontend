@@ -1,6 +1,8 @@
 <div class="row" *ngIf="!loginPass && !isLoading">
 	<div class="col-xs-12 col-md-4 offset-md-4">
+
 		<app-alert [message]="error" *ngIf="error" (close)="onCloseError()"></app-alert>
+
 		<form #f="ngForm" (ngSubmit)="onLoginFormSubmit(f)">
 			<br><br><br>
 			<div class="form-group">
@@ -16,6 +18,9 @@
 			</div>
 		</form>
 	</div>
+</div>
+<div *ngIf="loader">
+	<app-loading-spinner></app-loading-spinner>
 </div>
 <br>
 <!-- <app-load-spinner></app-load-spinner> -->
